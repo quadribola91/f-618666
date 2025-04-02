@@ -2,10 +2,15 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { AnimationDirection } from "@/utils/scrollAnimation";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 const ContactSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,6 +19,20 @@ const ContactSection = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionRef.current.setAttribute('data-animate', AnimationDirection.FADE);
+    }
+    
+    if (infoRef.current) {
+      infoRef.current.setAttribute('data-animate', AnimationDirection.LEFT);
+    }
+    
+    if (formRef.current) {
+      formRef.current.setAttribute('data-animate', AnimationDirection.RIGHT);
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -38,7 +57,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20" ref={sectionRef}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
@@ -50,7 +69,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
+          <div className="space-y-8" ref={infoRef}>
             <h3 className="text-xl font-bold mb-4">Contact Information</h3>
             
             <div className="flex items-start space-x-4">
@@ -149,7 +168,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <div>
+          <div ref={formRef}>
             <h3 className="text-xl font-bold mb-6">Send Me a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>

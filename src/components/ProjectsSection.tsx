@@ -1,7 +1,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { AnimationDirection } from "@/utils/scrollAnimation";
 import { ExternalLink, Github } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 type Project = {
   id: number;
@@ -14,6 +16,26 @@ type Project = {
 };
 
 const ProjectsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionRef.current.setAttribute('data-animate', AnimationDirection.FADE);
+    }
+    
+    projectRefs.current.forEach((project, index) => {
+      if (project) {
+        // Alternate animations for projects
+        const direction = index % 2 === 0 
+          ? AnimationDirection.LEFT 
+          : AnimationDirection.RIGHT;
+        
+        project.setAttribute('data-animate', direction);
+      }
+    });
+  }, []);
+
   const projects: Project[] = [
     {
       id: 1,
@@ -45,7 +67,7 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900/50" ref={sectionRef}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
@@ -57,8 +79,12 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Card key={project.id} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow">
+          {projects.map((project, index) => (
+            <Card 
+              key={project.id} 
+              className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow"
+              ref={el => projectRefs.current[index] = el}
+            >
               <div className="h-48 bg-gray-200 dark:bg-gray-700">
                 <img 
                   src={project.image} 

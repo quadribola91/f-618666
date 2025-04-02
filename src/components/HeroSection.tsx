@@ -1,8 +1,39 @@
 
 import { Button } from "@/components/ui/button";
+import { AnimationDirection } from "@/utils/scrollAnimation";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const HeroSection = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.setAttribute('data-animate', AnimationDirection.LEFT);
+      // Make hero content animate immediately
+      setTimeout(() => {
+        contentRef.current?.classList.add('animated');
+      }, 300);
+    }
+    
+    if (imageRef.current) {
+      imageRef.current.setAttribute('data-animate', AnimationDirection.RIGHT);
+      // Make hero image animate immediately
+      setTimeout(() => {
+        imageRef.current?.classList.add('animated');
+      }, 600);
+    }
+    
+    if (scrollRef.current) {
+      scrollRef.current.setAttribute('data-animate', AnimationDirection.FADE);
+      setTimeout(() => {
+        scrollRef.current?.classList.add('animated');
+      }, 1200);
+    }
+  }, []);
+
   return (
     <section 
       id="hero" 
@@ -10,7 +41,7 @@ const HeroSection = () => {
     >
       <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <div className="space-y-6" ref={contentRef}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
               IT Specialist & <span className="text-primary">Frontend Developer</span>
             </h1>
@@ -50,7 +81,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="hidden md:flex justify-center">
+          <div className="hidden md:flex justify-center" ref={imageRef}>
             <div className="relative w-72 h-72 lg:w-96 lg:h-96">
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl"></div>
               <div className="absolute inset-0 flex items-center justify-center">
@@ -65,7 +96,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2" ref={scrollRef}>
         <a href="#about" className="text-gray-400 hover:text-primary">
           <ArrowDown size={24} />
           <span className="sr-only">Scroll down</span>

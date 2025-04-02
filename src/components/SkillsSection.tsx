@@ -1,7 +1,32 @@
 
 import { Progress } from "@/components/ui/progress";
+import { AnimationDirection } from "@/utils/scrollAnimation";
+import { useEffect, useRef } from "react";
 
 const SkillsSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const technicalRef = useRef<HTMLDivElement>(null);
+  const otherSkillsRef = useRef<HTMLDivElement>(null);
+  const educationRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionRef.current.setAttribute('data-animate', AnimationDirection.FADE);
+    }
+    
+    if (technicalRef.current) {
+      technicalRef.current.setAttribute('data-animate', AnimationDirection.LEFT);
+    }
+    
+    if (otherSkillsRef.current) {
+      otherSkillsRef.current.setAttribute('data-animate', AnimationDirection.RIGHT);
+    }
+    
+    if (educationRef.current) {
+      educationRef.current.setAttribute('data-animate', AnimationDirection.UP);
+    }
+  }, []);
+
   const technicalSkills = [
     { name: "HTML/CSS", level: 90 },
     { name: "JavaScript", level: 85 },
@@ -23,7 +48,7 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20" ref={sectionRef}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
@@ -34,7 +59,7 @@ const SkillsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
+          <div ref={technicalRef}>
             <h3 className="text-xl font-bold mb-6">Technical Skills</h3>
             <div className="space-y-6">
               {technicalSkills.map((skill) => (
@@ -50,31 +75,35 @@ const SkillsSection = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-6">Other Skills</h3>
-            <div className="flex flex-wrap gap-3">
-              {otherSkills.map((skill) => (
-                <div
-                  key={skill}
-                  className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium"
-                >
-                  {skill}
-                </div>
-              ))}
+            <div ref={otherSkillsRef}>
+              <h3 className="text-xl font-bold mb-6">Other Skills</h3>
+              <div className="flex flex-wrap gap-3">
+                {otherSkills.map((skill) => (
+                  <div
+                    key={skill}
+                    className="bg-primary/10 text-primary px-4 py-2 rounded-full font-medium"
+                  >
+                    {skill}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <h3 className="text-xl font-bold mb-6 mt-12">Education & Certifications</h3>
-            <div className="space-y-4">
-              <div className="border-l-2 border-primary pl-4 py-2">
-                <h4 className="font-bold">Bachelor's Degree in Computer Science</h4>
-                <p className="text-gray-600 dark:text-gray-400">Example University, 2015-2019</p>
-              </div>
-              <div className="border-l-2 border-primary pl-4 py-2">
-                <h4 className="font-bold">Microsoft Certified: Azure Fundamentals</h4>
-                <p className="text-gray-600 dark:text-gray-400">Microsoft, 2020</p>
-              </div>
-              <div className="border-l-2 border-primary pl-4 py-2">
-                <h4 className="font-bold">CompTIA A+ Certification</h4>
-                <p className="text-gray-600 dark:text-gray-400">CompTIA, 2018</p>
+            <div ref={educationRef} className="mt-12">
+              <h3 className="text-xl font-bold mb-6">Education & Certifications</h3>
+              <div className="space-y-4">
+                <div className="border-l-2 border-primary pl-4 py-2">
+                  <h4 className="font-bold">Bachelor's Degree in Computer Science</h4>
+                  <p className="text-gray-600 dark:text-gray-400">Example University, 2015-2019</p>
+                </div>
+                <div className="border-l-2 border-primary pl-4 py-2">
+                  <h4 className="font-bold">Microsoft Certified: Azure Fundamentals</h4>
+                  <p className="text-gray-600 dark:text-gray-400">Microsoft, 2020</p>
+                </div>
+                <div className="border-l-2 border-primary pl-4 py-2">
+                  <h4 className="font-bold">CompTIA A+ Certification</h4>
+                  <p className="text-gray-600 dark:text-gray-400">CompTIA, 2018</p>
+                </div>
               </div>
             </div>
           </div>

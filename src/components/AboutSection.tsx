@@ -1,10 +1,29 @@
 
 import { Card, CardContent } from "@/components/ui/card";
+import { AnimationDirection } from "@/utils/scrollAnimation";
 import { Code, Laptop, School } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const AboutSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionRef.current.setAttribute('data-animate', AnimationDirection.FADE);
+    }
+
+    cardsRef.current.forEach((card, index) => {
+      if (card) {
+        // Alternate animations for cards
+        const direction = index % 2 === 0 ? AnimationDirection.LEFT : AnimationDirection.RIGHT;
+        card.setAttribute('data-animate', direction);
+      }
+    });
+  }, []);
+
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900/50" ref={sectionRef}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
@@ -15,7 +34,10 @@ const AboutSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow">
+          <Card 
+            className="bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow"
+            ref={el => cardsRef.current[0] = el}
+          >
             <CardContent className="p-8">
               <div className="bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-6">
                 <Laptop className="text-primary" size={24} />
@@ -28,7 +50,10 @@ const AboutSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow">
+          <Card 
+            className="bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow"
+            ref={el => cardsRef.current[1] = el}
+          >
             <CardContent className="p-8">
               <div className="bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-6">
                 <School className="text-primary" size={24} />
@@ -41,7 +66,10 @@ const AboutSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow">
+          <Card 
+            className="bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow"
+            ref={el => cardsRef.current[2] = el}
+          >
             <CardContent className="p-8">
               <div className="bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-6">
                 <Code className="text-primary" size={24} />
@@ -55,7 +83,12 @@ const AboutSection = () => {
           </Card>
         </div>
         
-        <div className="mt-16 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+        <div 
+          className="mt-16 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md" 
+          ref={el => {
+            if (el) el.setAttribute('data-animate', AnimationDirection.UP);
+          }}
+        >
           <h3 className="text-xl font-bold mb-4">My Story</h3>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             With a background in IT support, I've always been passionate about solving technical problems and helping others 
