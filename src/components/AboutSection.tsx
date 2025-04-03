@@ -1,14 +1,30 @@
-
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AnimationDirection } from "@/utils/scrollAnimation";
 import { Code, Laptop, School } from "lucide-react";
-import { useEffect, useRef } from "react";
 
 const AboutSection = () => {
+  const [text, setText] = useState("Frontend React Developer"); // Initial text
+  const [index, setIndex] = useState(0); // To track the text animation
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Array of text options
+  const textOptions = ["Frontend React Developer", "Web Developer"];
+
   useEffect(() => {
+    const interval = setInterval(() => {
+      // Change text every 3 seconds (or any time you prefer)
+      setIndex((prevIndex) => (prevIndex + 1) % textOptions.length); // Alternate between 0 and 1
+    }, 3000); // Adjust the time for smoother transition
+
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    setText(textOptions[index]); // Update the text based on the index
+
     if (sectionRef.current) {
       sectionRef.current.setAttribute('data-animate', AnimationDirection.FADE);
     }
@@ -20,7 +36,7 @@ const AboutSection = () => {
         card.setAttribute('data-animate', direction);
       }
     });
-  }, []);
+  }, [index]);
 
   return (
     <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900/50" ref={sectionRef}>
@@ -32,7 +48,7 @@ const AboutSection = () => {
             A passionate IT professional with experience in support, education, and frontend development.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card 
             className="bg-white dark:bg-gray-800 border-none shadow-md hover:shadow-lg transition-shadow"
@@ -42,9 +58,9 @@ const AboutSection = () => {
               <div className="bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-6">
                 <Laptop className="text-primary" size={24} />
               </div>
-              <h3 className="text-xl font-bold mb-3">IT Support Specialist</h3>
+              <h3 className="text-xl font-bold mb-3">IT Support Specialist</h3> {/* Dynamic text here */}
               <p className="text-gray-600 dark:text-gray-400">
-                I provide comprehensive IT support solutions, troubleshooting hardware and software issues to ensure 
+                I provide comprehensive IT support solutions, troubleshooting hardware, software & Cloud support to ensure 
                 smooth operations for businesses and individuals.
               </p>
             </CardContent>
@@ -74,7 +90,7 @@ const AboutSection = () => {
               <div className="bg-primary/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-6">
                 <Code className="text-primary" size={24} />
               </div>
-              <h3 className="text-xl font-bold mb-3">Frontend Web Developer</h3>
+              <h3 className="text-xl font-bold mb-3">{text}</h3>
               <p className="text-gray-600 dark:text-gray-400">
                 I build visually stunning and user-friendly websites and web applications using modern frontend 
                 technologies including React, Tailwind CSS, and more.
@@ -82,7 +98,7 @@ const AboutSection = () => {
             </CardContent>
           </Card>
         </div>
-        
+
         <div 
           className="mt-16 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md" 
           ref={el => {

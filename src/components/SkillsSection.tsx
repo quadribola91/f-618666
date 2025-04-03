@@ -29,20 +29,20 @@ const SkillsSection = () => {
 
   const technicalSkills = [
     { name: "HTML/CSS", level: 90 },
-    { name: "JavaScript", level: 85 },
-    { name: "React.js", level: 80 },
-    { name: "Tailwind CSS", level: 85 },
-    { name: "TypeScript", level: 75 },
-    { name: "Node.js", level: 70 },
-    { name: "Firebase", level: 65 },
+    { name: "JavaScript", level: 60 },
+    { name: "React.js", level: 55 },
+    { name: "Tailwind CSS", level: 75 },
+    // { name: "TypeScript", level: 75 },
+    // { name: "Node.js", level: 50 },
+    { name: "Firebase", level: 55 },
   ];
 
   const otherSkills = [
     "IT Troubleshooting",
-    "Network Administration",
+    // "Network Administration",
     "Data Processing",
     "Technical Training",
-    "UX/UI Design",
+    // "UX/UI Design",
     "Responsive Design",
     "Git/GitHub",
   ];
@@ -93,17 +93,17 @@ const SkillsSection = () => {
               <h3 className="text-xl font-bold mb-6">Education & Certifications</h3>
               <div className="space-y-4">
                 <div className="border-l-2 border-primary pl-4 py-2">
-                  <h4 className="font-bold">Bachelor's Degree in Computer Science</h4>
-                  <p className="text-gray-600 dark:text-gray-400">Example University, 2015-2019</p>
+                  <h4 className="font-bold">Bsc.Ed Computer & Information science</h4>
+                  <p className="text-gray-600 dark:text-gray-400">Tai-Solarin University, 2014-2019</p>
                 </div>
                 <div className="border-l-2 border-primary pl-4 py-2">
-                  <h4 className="font-bold">Microsoft Certified: Azure Fundamentals</h4>
-                  <p className="text-gray-600 dark:text-gray-400">Microsoft, 2020</p>
+                  <h4 className="font-bold">ReactJs</h4>
+                  <p className="text-gray-600 dark:text-gray-400">GomyCode, 2024</p>
                 </div>
-                <div className="border-l-2 border-primary pl-4 py-2">
+                {/* <div className="border-l-2 border-primary pl-4 py-2">
                   <h4 className="font-bold">CompTIA A+ Certification</h4>
                   <p className="text-gray-600 dark:text-gray-400">CompTIA, 2018</p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

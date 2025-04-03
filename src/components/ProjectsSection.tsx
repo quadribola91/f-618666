@@ -4,6 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AnimationDirection } from "@/utils/scrollAnimation";
 import { ExternalLink, Github } from "lucide-react";
 import { useEffect, useRef } from "react";
+import A from "../lib/A.png";
+import B from "../lib/B.png";
+import C from "../lib/C.png";
 
 type Project = {
   id: number;
@@ -39,30 +42,30 @@ const ProjectsSection = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "E-commerce Dashboard",
-      description: "A responsive dashboard for e-commerce stores with sales analytics, inventory management, and customer insights.",
-      image: "placeholder.svg",
-      tags: ["React", "TypeScript", "Tailwind CSS", "Chart.js"],
-      liveUrl: "https://example.com/project1",
-      githubUrl: "https://github.com/yourusername/project1",
+      title: "Real-Estate Dashboard",
+      description: "A responsive dashboard for real estate listings with rent, lease, buy portals and Adminstrative insights via agents.",
+      image: B,
+      tags: ["React", "Tailwind CSS", "Firebase"],
+      liveUrl: "https://rentwiteaseng.vercel.app",
+      githubUrl: "https://github.com/quadribola91/realestateng",
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "A kanban-style task manager for teams with real-time updates, file attachments, and priority settings.",
-      image: "placeholder.svg",
-      tags: ["React", "Firebase", "Tailwind CSS", "React DnD"],
-      liveUrl: "https://example.com/project2",
-      githubUrl: "https://github.com/yourusername/project2",
+      title: "Job Connect",
+      description: "An employment dashboard for connecting potential employers with job seekers",
+      image: A,
+      tags: ["React", "Firebase", "Tailwind CSS"],
+      liveUrl: "https://Jobconnect.vercel.app",
+      githubUrl: "https://github.com/quadribola91/jobconnect",
     },
     {
       id: 3,
-      title: "Educational Platform",
-      description: "An interactive learning platform for ICT and data processing courses with quizzes and progress tracking.",
-      image: "placeholder.svg",
-      tags: ["React", "Node.js", "MongoDB", "Express"],
-      liveUrl: "https://example.com/project3",
-      githubUrl: "https://github.com/yourusername/project3",
+      title: "HighCloud Tech",
+      description: "An interactive enrollment platform for technology courses.",
+      image: C,
+      tags: ["React", "Firebase","Tailwind CSS"],
+      liveUrl: "https://highcloud-tech.vercel.app",
+      githubUrl: "https://github.com/quadribola91/HighcloudTech",
     },
   ];
 
@@ -89,7 +92,7 @@ const ProjectsSection = () => {
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <CardContent className="p-6">

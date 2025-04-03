@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="font-bold text-xl text-primary">
-            <Link to="/">Developer Portfolio</Link>
+            <Link to="/">Omobolarinwa Quadri</Link>
           </div>
 
           {isMobile ? (
@@ -56,7 +56,7 @@ const NavLinks = ({
   const navItems = [
     { label: "Home", href: "#hero" },
     { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
+    // { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];

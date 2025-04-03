@@ -79,7 +79,7 @@ const ContactSection = () => {
               <div>
                 <h4 className="font-medium">Email</h4>
                 <a href="mailto:your.email@example.com" className="text-gray-600 dark:text-gray-400 hover:text-primary">
-                  your.email@example.com
+                  quadribola91@gmail.com
                 </a>
               </div>
             </div>
@@ -91,7 +91,7 @@ const ContactSection = () => {
               <div>
                 <h4 className="font-medium">Phone</h4>
                 <a href="tel:+1234567890" className="text-gray-600 dark:text-gray-400 hover:text-primary">
-                  +123 456 7890
+                  +234 703 622 7445
                 </a>
               </div>
             </div>
@@ -103,7 +103,7 @@ const ContactSection = () => {
               <div>
                 <h4 className="font-medium">Location</h4>
                 <p className="text-gray-600 dark:text-gray-400">
-                  City, Country
+                  Lagos, Nigeria
                 </p>
               </div>
             </div>
@@ -112,7 +112,7 @@ const ContactSection = () => {
               <h3 className="text-xl font-bold mb-4">Follow Me</h3>
               <div className="flex space-x-4">
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/quadribola91" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-200 dark:bg-gray-700 hover:bg-primary hover:text-white dark:hover:bg-primary p-3 rounded-full transition-colors"
@@ -131,7 +131,7 @@ const ContactSection = () => {
                   </svg>
                 </a>
                 <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/in/omobolarinwa-quadri-a207b3216/" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-200 dark:bg-gray-700 hover:bg-primary hover:text-white dark:hover:bg-primary p-3 rounded-full transition-colors"
